@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { PG_CONNECTION } from './commons/constants';
+import { SQLITE_CONNECTION } from './commons/constants';
 import { drizzle, BetterSQLite3Database } from 'drizzle-orm/better-sqlite3';
 import { migrate } from "drizzle-orm/better-sqlite3/migrator";
 import * as Database from 'better-sqlite3';
@@ -8,7 +8,7 @@ import { LoggingService } from './commons/logging-service';
 @Module({
     providers: [
         {
-            provide: PG_CONNECTION,
+            provide: SQLITE_CONNECTION,
             useFactory: async () => {
                 const sqlite = new Database('src/log/commons/logs.db');
                 sqlite.pragma('journal_mode = WAL');
@@ -20,7 +20,7 @@ import { LoggingService } from './commons/logging-service';
         LoggingService
     ],
     exports: [
-        PG_CONNECTION,
+        SQLITE_CONNECTION,
         LoggingService
     ],
 })

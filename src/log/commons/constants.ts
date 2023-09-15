@@ -3,7 +3,7 @@ import * as Database from 'better-sqlite3';
 import { BadRequestException, HttpException, HttpStatus, InternalServerErrorException, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { ValidationError } from 'class-validator';
 
-export const PG_CONNECTION = 'PG_CONNECTION';
+export const SQLITE_CONNECTION = 'SQLITE_CONNECTION';
 
 const sqlite = new Database('src/log/commons/logs.db');
 sqlite.pragma('journal_mode = WAL');
